@@ -1,0 +1,18 @@
+extends layouts/layout
+
+block headContent
+
+block bodyContent
+
+    form(method='POST', action='/edit-user/' + user.id)
+        div
+            input(id='userID', name='userID', placeholder='User ID', value=user.userID)
+        div
+            input(id='name', name='name', placeholder='Name', value=user.name)
+        div
+            input(id='age', name='age', placeholder='Age', value=user.age)
+        div
+            input(id='email', name='email', type='email', placeholder='Email', value=user.email)
+        div
+            input(type='submit', value='Confirm')
+            a(href='/users') Cancel

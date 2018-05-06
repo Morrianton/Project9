@@ -1,0 +1,17 @@
+extends layouts/layout
+
+block headContent
+
+block bodyContent
+    form(method='POST', action='/users')
+        div
+            input(id='userID', name='userID', placeholder='User ID')
+        div
+            input(id='name', name='name', placeholder='Name')
+        div
+            input(id='age', name='age', placeholder='Age')
+        div
+            input(id='email', name='email', type='email', placeholder='Email')
+        div
+            input(type='submit', value='Add User')
+        a(href='/users') Go to Users
