@@ -1,13 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const fs = require('fs');
-
-const router = express.Router();
+const mongoose = require('mongoose');
 
 const app = express();
-
-let port = 3000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -15,13 +11,19 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-let file = 'users.json';
-let newUser = {};
-let users;
-let obj;
-let json;
+mongoose.connect('mongodb://localhost/project9');
 
-let id = 1;
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    console.log('we are connected');
+    let userSchema = mongoose.Schema({
+        userID: String,
+        name: String,
+        age: Number,
+        email: String
+    });
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -157,8 +159,8 @@ app.get('/delete', (req, res) => {
 
 });
 
-app.listen(port, () => {
-    console.log(`listening on port ${port}`);
+app.listen(27017, () => {
+    console.log(`listening on port 27017`);
 });
 
 // finds a user's index by their id and returns it
