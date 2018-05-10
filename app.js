@@ -15,9 +15,13 @@ mongoose.connect('mongodb://localhost/project9');
 
 const db = mongoose.connection;
 
+let user;
+
+let port = 27017;
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-    console.log('we are connected');
+    console.log('Mongo Database Connected');
     let userSchema = mongoose.Schema({
         userID: String,
         name: String,
@@ -25,154 +29,95 @@ db.once('open', function() {
         email: String
     });
 
-app.get('/', (req, res) => {
-    res.render('index');
-});
+    user = mongoose.model('user', userSchema);
+
+    app.get('/', (req, res) => {
+        res.render('index');
+    });
 
 // Adds new user to users table via POST request
-app.post('/users', (req, res) => {
+    app.post('/users', (req, res) => {
+        let newUser = new user(
+            {
+                userID: req.body.userID,
+                name: req.body.name,
+                age: req.body.age,
+                email: req.body.email
+            }
+        );
 
-    fs.readFile(file, 'utf8', (err, data) => {
-       if (err) throw err;
+        newUser.save((err, newUser) => {
+            if (err) throw err;
 
-       obj = JSON.parse(data);
+            console.log(`${newUser.userID} Added to the Database`);
 
-       if(obj.users === null) {
+            user.find({}, (err, users) => {
+                if (err) throw err;
 
-           newUser = {
-               id: id,
-               userID: req.body.userID,
-               name: req.body.name,
-               age: req.body.age,
-               email: req.body.email
-           };
+                res.render('users', {users: users});
+            });
 
-       }
-       else {
-           obj.users.forEach((user) => {
-               if(id === user.id) {
-                   id++;
-               }
-           });
-
-           newUser = {
-               id: id,
-               userID: req.body.userID,
-               name: req.body.name,
-               age: req.body.age,
-               email: req.body.email
-           };
-
-           id = 1;
-
-       }
-
-           obj.users.push(newUser);
-           json = JSON.stringify(obj);
-           fs.writeFileSync(file, json, 'utf8');
-
-           console.log(`${req.body.userID} was added to ${file}`);
-
-        res.render('users', {users: obj.users});
+        });
 
     });
 
-});
+    app.get('/users', (req, res) => {
 
-app.get('/users', (req, res) => {
+        user.find({}, (err, users) => {
+            if(err) throw err;
 
-    fs.readFile(file, 'utf8', (err, data) => {
+            res.render('users', {users: users});
+        })
+
+    });
+
+    app.get('/edit-user/:_id', (req, res) => {
+
+        user.findById(req.params._id, (err, user) => {
+           if (err) throw err;
+
+           res.render('edit', {user: user})
+        });
+
+    });
+
+    app.post('/edit-user/:_id', (req, res) => {
+
+        user.update({_id: req.params._id},
+            {$set:
+                    {
+                        userID: req.body.userID,
+                        name: req.body.name,
+                        age: req.body.age,
+                        email: req.body.email
+                    }
+            },
+            (err) => {
+            if (err) throw err;
+
+            Console.log(`${user.userID} Has Been Updated`);
+
+            res.redirect('/users');
+        });
+
+    });
+
+    app.get('/delete/:_id', (req, res) => {
+
+        user.remove({_id: req.params._id}, (err) => {
+            if (err) throw err;
+
+            console.log('User Removed from the Database')
+
+            res.redirect('/users');
+        });
+
+    });
+
+    app.listen(port, (err) => {
         if (err) throw err;
 
-        obj = JSON.parse(data);
-
-        res.render('users', {users: obj.users});
-
+        console.log(`Listening on Port: ${port}`);
     });
 
 });
-
-app.get('/edit-user/:id', (req, res) => {
-
-    fs.readFile(file, 'utf8', (err, data) => {
-
-        obj = JSON.parse(data);
-
-        let userIndex = findUserIndex(req.params.id, obj.users);
-
-        res.render('edit', {user: obj.users[userIndex]});
-    });
-});
-
-app.post('/edit-user/:id', (req, res) => {
-
-    fs.readFile(file, 'utf8', (err, data) => {
-        if (err) throw err;
-
-        obj = JSON.parse(data);
-
-        newUser = {
-            id: req.params.id,
-            userID: req.body.userID,
-            name: req.body.name,
-            age: req.body.age,
-            email: req.body.email
-        };
-
-        let userIndex = findUserIndex(req.params.id, obj.users);
-
-        obj.users.splice((userIndex), 1, newUser);
-
-        json = JSON.stringify(obj);
-
-        fs.writeFileSync(file, json, 'utf8');
-    });
-
-    res.redirect('/users');
-});
-
-
-app.get('/delete/:id', (req, res) => {
-
-    fs.readFile(file, 'utf8', (err, data) => {
-       if (err) throw err;
-
-       obj = JSON.parse(data);
-
-       let userIndex = findUserIndex(req.params.id, obj.users);
-
-       obj.users.splice((userIndex), 1);
-
-       json = JSON.stringify(obj);
-
-       fs.writeFileSync(file, json, 'utf8');
-
-   });
-
-    res.redirect('/users');
-
-});
-
-app.get('/delete', (req, res) => {
-
-    res.redirect('/users');
-
-});
-
-app.listen(27017, () => {
-    console.log(`listening on port 27017`);
-});
-
-// finds a user's index by their id and returns it
-function findUserIndex(id, array) {
-    let index = 0;
-
-    for(let i = 0; i <= array.length - 1; i++) {
-        if(id == array[i].id) {
-            index = i;
-        }
-    }
-
-    return index;
-
-}
