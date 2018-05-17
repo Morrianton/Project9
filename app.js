@@ -73,6 +73,26 @@ db.once('open', function() {
 
     });
 
+    app.post('/users/search/:value', (req, res) => {
+
+        console.log(req);
+
+        user.find(
+            {
+                userID: req.params.value,
+                name: req.params.value,
+                age: req.params.value,
+                email: req.params.value
+            },
+
+            (err, users) => {
+                if(err) console.log(err);
+
+                res.render('users', {users: users});
+            });
+
+    });
+
     app.get('/users/ascending/', (req, res) => {
 
         user.find({})
@@ -94,6 +114,8 @@ db.once('open', function() {
 
                 res.render('users', {users: users});
             });
+
+
 
     });
 

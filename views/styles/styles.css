@@ -87,6 +87,14 @@ td {
     outline: none;
 }
 
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 40px 0 0;
+    margin: 20px 0;
+    align-items: center;
+}
+
 .search {
     width: 200px;
     height: 35px;
@@ -99,6 +107,49 @@ td {
     font-size: 20px;
     background: rgba(0, 0, 0, 0.025);
     padding: 0 10px;
+}
+
+.search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(to bottom right, #ffaf8f, salmon);
+    border: none;
+    border-bottom: solid 4px #d76f6f;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    outline: none;
+    margin: 0 0 0 20px;
+
+    color: #b45a5a;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: lighter;
+
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background: linear-gradient(top, #eb9e7e, #eb7d6c);
+    border-radius: 50%;
+    color: #b45d5d;
+    border: none;
+    font-size: 24px;
+    text-shadow: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.search-button:focus {
+    background: linear-gradient(top, #eb9e7e, #eb7d6c);
+    border-radius: 50%;
+    color: #b45d5d;
+    border: none;
+    font-size: 24px;
+    text-shadow: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .button-container-interior {
@@ -131,7 +182,7 @@ td {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
     outline: none;
 
-    color: #cd6868;
+    color: #b46161;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     font-size: 30px;
@@ -146,7 +197,7 @@ td {
     justify-content: center;
     background: linear-gradient(top, #eb9e7e, #eb7d6c);
     border-radius: 4px;
-    color: #cd6868;
+    color: #b45d5d;
     border: none;
     font-size: 29px;
     text-shadow: none;
