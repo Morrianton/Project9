@@ -8,6 +8,7 @@ block bodyContent
         .button-container
             form(method='GET' action='/users/ascending/')
                 button.button-order: i(class="fas fa-sort-alpha-up")
+            input.search(placeholder='search...')
             form(method='GET' action='/users/descending/')
                 button.button-order: i(class="fas fa-sort-alpha-down")
         include includes/table

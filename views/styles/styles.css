@@ -87,6 +87,20 @@ td {
     outline: none;
 }
 
+.search {
+    width: 200px;
+    height: 35px;
+    outline: none;
+    border-radius: 5px;
+    border: solid 1px whitesmoke;
+    border-top: solid 1px lightgray;
+    text-align: start;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    background: rgba(0, 0, 0, 0.025);
+    padding: 0 10px;
+}
+
 .button-container-interior {
     display: flex;
     width: 225px;
