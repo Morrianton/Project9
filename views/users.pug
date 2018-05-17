@@ -1,7 +1,14 @@
 extends layouts/layout
 
-block headContent
-
 block bodyContent
-    include includes/table
-    a(href='/') Add User
+    .container
+        .title-container
+            h1.title-left user
+            h1.title-right .MANAGER
+        .button-container
+            form(method='GET' action='/users/ascending/')
+                button.button-order: i(class="fas fa-sort-alpha-up")
+            form(method='GET' action='/users/descending/')
+                button.button-order: i(class="fas fa-sort-alpha-down")
+        include includes/table
+        a.nav-button(href='/') add user

@@ -1,21 +1,22 @@
 if users[0]
-    table
-        tr
-            th='UserID'
-            th='Name'
-            th='Age'
-            th='Email Address'
-
-    each user in users
-        tr
-            td=user.userID
-            td=user.name
-            td=user.age
-            td=user.email
-            a(href='/edit-user/' + user.id) Edit
-            a(href='/delete/' + user.id) delete
-        br
-
+    table.table-container
+        thead
+            tr
+                th='UserID'
+                th='Name'
+                th='Age'
+                th='Email'
+        tbody
+        each user in users
+            tr
+                td=user.userID
+                td=user.name
+                td=user.age
+                td=user.email
+                td
+                    .button-container-interior
+                        a.button(href='/edit-user/' + user._id) edit
+                        a.button(href='/delete/' + user._id) delete
 
 else
     p="There aren't any users yet. Click the 'Add User' button."

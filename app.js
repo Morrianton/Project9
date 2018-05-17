@@ -32,7 +32,9 @@ db.once('open', function() {
     user = mongoose.model('user', userSchema);
 
     app.get('/', (req, res) => {
+
         res.render('index');
+
     });
 
 // Adds new user to users table via POST request
@@ -47,12 +49,12 @@ db.once('open', function() {
         );
 
         newUser.save((err, newUser) => {
-            if (err) throw err;
+            if (err) console.log(err);
 
             console.log(`${newUser.userID} Added to the Database`);
 
             user.find({}, (err, users) => {
-                if (err) throw err;
+                if(err) console.log(err);
 
                 res.render('users', {users: users});
             });
@@ -64,17 +66,41 @@ db.once('open', function() {
     app.get('/users', (req, res) => {
 
         user.find({}, (err, users) => {
-            if(err) throw err;
+            if(err) console.log(err);
 
             res.render('users', {users: users});
-        })
+        });
+
+    });
+
+    app.get('/users/ascending/', (req, res) => {
+
+        user.find({})
+            .sort('-userID')
+            .exec((err, users) => {
+                if(err) console.log(err);
+
+                res.render('users', {users: users});
+        });
+
+    });
+
+    app.get('/users/descending/', (req, res) => {
+
+        user.find({})
+            .sort('userID')
+            .exec((err, users) => {
+                if(err) console.log(err);
+
+                res.render('users', {users: users});
+            });
 
     });
 
     app.get('/edit-user/:_id', (req, res) => {
 
         user.findById(req.params._id, (err, user) => {
-           if (err) throw err;
+           if (err) console.log(err);
 
            res.render('edit', {user: user})
         });
@@ -93,9 +119,9 @@ db.once('open', function() {
                     }
             },
             (err) => {
-            if (err) throw err;
+            if (err) console.log(err);
 
-            Console.log(`${user.userID} Has Been Updated`);
+            console.log(`${user.userID} Has Been Updated`);
 
             res.redirect('/users');
         });
@@ -105,9 +131,9 @@ db.once('open', function() {
     app.get('/delete/:_id', (req, res) => {
 
         user.remove({_id: req.params._id}, (err) => {
-            if (err) throw err;
+            if (err) console.log(err);
 
-            console.log('User Removed from the Database')
+            console.log('User Removed from the Database');
 
             res.redirect('/users');
         });
@@ -115,9 +141,10 @@ db.once('open', function() {
     });
 
     app.listen(port, (err) => {
-        if (err) throw err;
+        if (err) console.log(err);
 
         console.log(`Listening on Port: ${port}`);
     });
 
 });
+

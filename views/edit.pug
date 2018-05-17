@@ -1,18 +1,16 @@
 extends layouts/layout
 
-block headContent
-
 block bodyContent
-
-    form(method='POST', action='/edit-user/' + user._id)
-        div
-            input(id='userID', name='userID', placeholder='User ID', value=user.userID)
-        div
-            input(id='name', name='name', placeholder='Name', value=user.name)
-        div
-            input(id='age', name='age', placeholder='Age', value=user.age)
-        div
-            input(id='email', name='email', type='email', placeholder='Email', value=user.email)
-        div
-            input(type='submit', value='Confirm')
-            a(href='/users') Cancel
+    .container
+        .title-container
+            h1.title-left user
+            h1.title-right .MANAGER
+        form(method='POST', action='/edit-user/' + user._id)
+            .form-container
+                input.field(id='userID', name='userID', placeholder='User ID', value=user.userID)
+                input.field(id='name', name='name', placeholder='Name', value=user.name)
+                input.field(id='age', name='age', placeholder='Age', value=user.age)
+                input.field(id='email', name='email', type='email', placeholder='Email', value=user.email)
+            .button-container
+                input.nav-button(type='submit', value='confirm')
+                a.nav-button(href='/users') cancel

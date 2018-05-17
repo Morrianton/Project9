@@ -1,0 +1,207 @@
+body {
+    overflow: scroll;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background: url('../media/beach.jpg') no-repeat center center fixed;
+    background-size: cover
+}
+
+.title-container {
+    padding: 0 0 0 25px;
+    display: flex;
+    align-items: end;
+}
+
+.title-left {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    text-shadow: 0 3px rgba(0, 0, 0, 0.25);
+}
+
+.title-right {
+    font-family: 'Impact', sans-serif;
+    font-size: 50px;
+    text-shadow: 0 3px rgba(0, 0, 0, 0.25);
+}
+
+.table-container {
+    margin: auto;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+th {
+    width: 125px;
+    height: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    text-shadow: 0 2px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+td {
+    width: 175px;
+    height: 35px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 350px;
+    margin: auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.field {
+    width: 300px;
+    height: 35px;
+    border-top: none;
+    border-left: none;
+    border-right: solid 1px black;
+    border-bottom: solid 1px black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    background: transparent;
+    outline: none;
+    padding: 0 0 5px 10px;
+    margin: 0 0 5px 0;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.field:focus {
+    border-left: solid 5px mediumaquamarine;
+    padding: 0 0 5px 5px;
+    outline: none;
+}
+
+.button-container-interior {
+    display: flex;
+    width: 225px;
+    height: 40px;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 5px;
+}
+
+.button-container {
+    display: flex;
+    margin: 20px auto;
+    width: 400px;
+    height: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.button-order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 50px;
+    background: linear-gradient(to bottom right, #ffaf8f, salmon);
+    border-bottom: solid 3px #d76f6f;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    outline: none;
+
+    color: #cd6868;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: lighter;
+
+    cursor: pointer;
+}
+
+.button-order:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(top, #eb9e7e, #eb7d6c);
+    border-radius: 4px;
+    color: #cd6868;
+    border: none;
+    font-size: 29px;
+    text-shadow: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 35px;
+    background: linear-gradient(to bottom right, aqua, aquamarine);
+    border-bottom: solid 3px mediumaquamarine;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    outline: none;
+
+    color: seagreen;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: lighter;
+
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(top, #00ebeb, #91ebcd);
+    border-radius: 4px;
+    color: seagreen;
+    border: none;
+    font-size: 19px;
+    text-shadow: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 35px;
+    background: linear-gradient(to bottom right, aqua, aquamarine);
+    border-bottom: solid 3px mediumaquamarine;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+
+    color: seagreen;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: lighter;
+
+    cursor: pointer;
+}
+
+.button:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(top, #00ebeb, #91ebcd);
+    border-radius: 4px;
+    color: seagreen;
+    border: none;
+    font-size: 19px;
+    text-shadow: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}

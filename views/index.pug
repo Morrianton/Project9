@@ -1,17 +1,16 @@
 extends layouts/layout
 
-block headContent
-
 block bodyContent
-    form(method='POST', action='/users')
-        div
-            input(id='userID', name='userID', placeholder='User ID')
-        div
-            input(id='name', name='name', placeholder='Name')
-        div
-            input(id='age', name='age', placeholder='Age')
-        div
-            input(id='email', name='email', type='email', placeholder='Email')
-        div
-            input(type='submit', value='Add User')
-        a(href='/users') Go to Users
+    .container
+        .title-container
+            h1.title-left user
+            h1.title-right .MANAGER
+        form(method='POST', action='/users')
+            .form-container
+                input.field(id='userID', name='userID', placeholder='User ID')
+                input.field(id='name', name='name', placeholder='Name')
+                input.field(id='age', name='age', placeholder='Age')
+                input.field(id='email', name='email', type='email', placeholder='Email')
+            .button-container
+                input.nav-button(type='submit', value='add user')
+                a.nav-button(href='/users') go to users
