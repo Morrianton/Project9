@@ -73,19 +73,14 @@ db.once('open', function() {
 
     });
 
-    app.post('/users/search/:value', (req, res) => {
+    app.post('/users/search', (req, res) => {
 
-        console.log(req);
-
-        user.find(
-            {
-                userID: req.params.value,
-                name: req.params.value,
-                age: req.params.value,
-                email: req.params.value
-            },
-
-            (err, users) => {
+        user.find({$or: [
+                { userID: new RegExp(req.body.search, 'i') },
+                { name: new RegExp(req.body.search, 'i') },
+                { email: new RegExp(req.body.search, 'i') }
+                ]})
+            .exec((err, users) => {
                 if(err) console.log(err);
 
                 res.render('users', {users: users});
@@ -93,7 +88,7 @@ db.once('open', function() {
 
     });
 
-    app.get('/users/ascending/', (req, res) => {
+    app.get('/users/ascending', (req, res) => {
 
         user.find({})
             .sort('-userID')
@@ -105,7 +100,7 @@ db.once('open', function() {
 
     });
 
-    app.get('/users/descending/', (req, res) => {
+    app.get('/users/descending', (req, res) => {
 
         user.find({})
             .sort('userID')

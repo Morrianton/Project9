@@ -5,14 +5,14 @@ block bodyContent
         .title-container
             h1.title-left user
             h1.title-right .MANAGER
-        .search-container
-            form(method='POST' action='/users/search/' + value)
-                input.search(placeholder='search...')
+        form(method='POST' action='/users/search')
+            .search-container
+                input.search(placeholder='search...' name='search' id='search')
                 button.search-button(type="submit"): i(class="fas fa-search")
         .button-container
-            form(method='GET' action='/users/ascending/')
+            form(method='GET' action='/users/ascending')
                 button.button-order: i(class="fas fa-sort-alpha-up")
-            form(method='GET' action='/users/descending/')
+            form(method='GET' action='/users/descending')
                 button.button-order: i(class="fas fa-sort-alpha-down")
         include includes/table
         a.nav-button(href='/') add user

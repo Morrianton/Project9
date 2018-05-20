@@ -1,4 +1,4 @@
-if users[0]
+if users
     table.table-container
         thead
             tr
@@ -19,4 +19,4 @@ if users[0]
                         a.button(href='/delete/' + user._id) delete
 
 else
-    p="There aren't any users yet. Click the 'Add User' button."
+    p="There are no users to display"
