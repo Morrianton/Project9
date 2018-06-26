@@ -17,7 +17,7 @@ const db = mongoose.connection;
 
 let user;
 
-let port = 27017;
+let port = 3000;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
